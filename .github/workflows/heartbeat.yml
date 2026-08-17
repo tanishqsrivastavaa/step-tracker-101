@@ -1,0 +1,22 @@
+# Keeps the Supabase free-tier project awake (it pauses after 7 days of
+# inactivity) and warms the Render service by pinging the backend health check
+# once a day. Set the repo secret BACKEND_URL to your Render URL, e.g.
+# https://steps-backend.onrender.com
+name: heartbeat
+
+on:
+  schedule:
+    - cron: "17 6 * * *" # 06:17 UTC daily (offset from the top of the hour)
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping backend health check
+        run: |
+          echo "Pinging ${BACKEND_URL:-<unset>}/"
+          curl -fsS --retry 3 --retry-delay 10 "${BACKEND_URL:?set the BACKEND_URL repo secret}/" \
+            && echo "OK" || (echo "heartbeat failed" && exit 1)
+        env:
+          BACKEND_URL: ${{ secrets.BACKEND_URL }}

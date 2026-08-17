@@ -1,0 +1,20 @@
+[project]
+name = "steps-backend"
+version = "0.1.0"
+description = "Steps Leaderboard backend — FastAPI + SQLModel + psycopg on Supabase Postgres"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "sqlmodel>=0.0.22",
+    "psycopg[binary]>=3.2",
+    "pydantic-settings>=2.5",
+    "uvicorn[standard]>=0.32",
+]
+
+[tool.uv]
+# This is a runnable application, not a library, so don't try to build/install it
+# as a package — just resolve and manage the dependency environment.
+package = false
+
+# We pin the interpreter to 3.12 via .python-version so uv provisions a managed
+# Python that has prebuilt psycopg binary wheels. Supabase/Render run 3.12 fine.

@@ -1,0 +1,9 @@
+# uv-managed virtual environment
+.venv/
+
+# env files (keep .env.example, ignore real ones)
+.env
+
+# python
+__pycache__/
+*.pyc

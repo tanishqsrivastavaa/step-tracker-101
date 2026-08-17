@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* Tailwind v4 theme tokens. Kept minimal — a calm, mobile-first palette. */
+@theme {
+  --color-bg: #0b0f17;
+  --color-surface: #141b26;
+  --color-surface-2: #1c2634;
+  --color-border: #263141;
+  --color-text: #e8edf4;
+  --color-muted: #93a1b5;
+  --color-accent: #38bdf8;
+  --color-gold: #fbbf24;
+  --color-silver: #cbd5e1;
+  --color-bronze: #d98a5b;
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hide number-input spinners for a cleaner mobile form. */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
