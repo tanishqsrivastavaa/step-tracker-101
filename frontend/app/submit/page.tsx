@@ -93,6 +93,16 @@ function SubmitForm() {
           )}
         </div>
       )}
+
+      {/* Static guide lives in /public — plain <a>, not a Next route. */}
+      <a
+        href="/shortcut-guide.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-6 block rounded-lg border border-[--color-border] bg-[--color-surface] p-3 text-sm text-[--color-muted] hover:text-[--color-text]"
+      >
+        📱 Tired of typing? Auto-log your steps from an iPhone Shortcut →
+      </a>
     </div>
   );
 }
