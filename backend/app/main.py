@@ -21,7 +21,7 @@ from .auth import get_current_user, require_admin
 from .config import settings
 from .db import create_db_and_tables, get_session
 from .models import StepEntry, User
-from .schemas import LeaderRow, NewUserIn, NewUserOut, StepIn, StepOut
+from .schemas import LeaderRow, NewUserIn, NewUserOut, StepIn, StepOut, TodayOut
 from .timeutil import period_bounds, today_local
 
 
@@ -46,6 +46,12 @@ app.add_middleware(
 def health() -> dict[str, bool]:
     """Health check — also used by the Supabase keep-alive heartbeat."""
     return {"ok": True}
+
+
+@app.get("/today", response_model=TodayOut)
+def today() -> TodayOut:
+    """The canonical group date used by leaderboard period filters."""
+    return TodayOut(date=today_local().isoformat(), timezone=settings.timezone)
 
 
 @app.post("/steps", response_model=StepOut)

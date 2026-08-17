@@ -30,6 +30,7 @@ Design everything around that endpoint.
 | Method | Path                              | Auth              | Purpose                                            |
 | ------ | --------------------------------- | ----------------- | -------------------------------------------------- |
 | GET    | `/`                               | public            | Health check → `{ "ok": true }`                    |
+| GET    | `/today`                          | none              | Return the backend's canonical `{ date, timezone }` |
 | POST   | `/steps`                          | `Bearer <token>`  | Upsert `{ date, steps, source? }` for one day      |
 | GET    | `/me?days=30`                     | `Bearer <token>`  | Caller's recent entries (default 30 days)          |
 | GET    | `/leaderboard?period=day\|week\|month\|all` | public  | Ranked `[{ rank, name, steps }]`                   |
@@ -166,16 +167,17 @@ Don't build an app. Build this Shortcut once, then wrap it in a daily automation
 
 1. **Find Health Samples** → Steps, where Date is Today.
 2. **Calculate Statistics** → Sum, of Health Sample Values from step 1.
-3. **Format Date** → the current date, format `yyyy-MM-dd`.
-4. **Get Contents of URL**:
-   - **URL:** `https://steps-backend.onrender.com/steps`
+3. **Get Contents of URL** → `GET https://step-tracker-101.onrender.com/today`.
+4. **Get Dictionary Value** → key `date` from the result of step 3.
+5. **Get Contents of URL**:
+   - **URL:** `https://step-tracker-101.onrender.com/steps`
    - **Method:** `POST`
    - **Headers:** `Authorization` = `Bearer YOUR_TOKEN`
    - **Request Body:** JSON:
      ```json
      { "date": "FORMATTED_DATE", "steps": SUM, "source": "shortcut" }
      ```
-     (Insert the step-3 date into `date` and the step-2 sum into `steps`.)
+     (Insert the step-4 dictionary value into `date` and the step-2 sum into `steps`.)
 
 Then **Automation → Create Personal Automation → Time of Day** (e.g. 11:30 PM daily),
 run this Shortcut, **Run Immediately** / turn off "Ask Before Running". Because

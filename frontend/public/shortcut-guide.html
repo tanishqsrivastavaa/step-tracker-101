@@ -157,10 +157,18 @@
         </ul>
       </li>
       <li>
-        <div class="action-name">Format Date</div>
+        <div class="action-name">Get Contents of URL</div>
         <ul class="fields">
-          <li>Date: <b>Current Date</b></li>
-          <li>Date Format: <b>Custom</b> → <code>yyyy-MM-dd</code></li>
+          <li>URL: <code>https://step-tracker-101.onrender.com/today</code></li>
+          <li>Method: <b>GET</b></li>
+          <li>This returns the official group date from the backend, so everyone uses
+          the same calendar day even if they are in different countries.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="action-name">Get Dictionary Value</div>
+        <ul class="fields">
+          <li>Get value for key <code>date</code> in the result of the previous action.</li>
         </ul>
       </li>
       <li>
@@ -181,11 +189,11 @@
         </ul>
         <table>
           <tr><th>Key</th><th>Type</th><th>Value</th></tr>
-          <tr><td><code>date</code></td><td>Text</td><td>the <b>Formatted Date</b> variable</td></tr>
+          <tr><td><code>date</code></td><td>Text</td><td>the <b>Dictionary Value</b> variable from the backend date lookup</td></tr>
           <tr><td><code>steps</code></td><td>Number</td><td>the <b>Rounded Number</b> variable</td></tr>
           <tr><td><code>source</code></td><td>Text</td><td><code>shortcut</code></td></tr>
         </table>
-        <div class="tip">To insert a variable (Formatted Date / Rounded Number), tap the value
+        <div class="tip">To insert a variable (Dictionary Value / Rounded Number), tap the value
         field and pick it from the suggestion bar above the keyboard.</div>
       </li>
     </ol>

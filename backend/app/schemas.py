@@ -42,6 +42,13 @@ class StepOut(BaseModel):
     updated_at: datetime
 
 
+class TodayOut(BaseModel):
+    """The backend's configured local date."""
+
+    date: str
+    timezone: str
+
+
 class NewUserIn(BaseModel):
     """Body of POST /users (admin only)."""
 
