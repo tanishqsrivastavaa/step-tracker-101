@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Steps Leaderboard — iPhone Setup</title>
+<style>
+  :root {
+    --bg: #0b0f17; --surface: #141b26; --surface2: #1c2634;
+    --border: #263141; --text: #e8edf4; --muted: #93a1b5;
+    --accent: #38bdf8; --gold: #fbbf24;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 620px; margin: 0 auto; padding: 28px 20px 64px; }
+  header { text-align: center; margin-bottom: 28px; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  header p { color: var(--muted); margin: 0; }
+  h2 {
+    font-size: 18px; margin: 0 0 4px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .num {
+    flex: none; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent); color: #04222f; font-weight: 700;
+    display: grid; place-items: center; font-size: 15px;
+  }
+  section {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px; margin-bottom: 16px;
+  }
+  section > p:first-of-type { margin-top: 10px; }
+  ol.actions { padding-left: 0; list-style: none; counter-reset: a; margin: 12px 0 0; }
+  ol.actions > li {
+    counter-increment: a; position: relative;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px 12px 44px; margin-bottom: 10px;
+  }
+  ol.actions > li::before {
+    content: counter(a); position: absolute; left: 12px; top: 12px;
+    width: 22px; height: 22px; border-radius: 6px; background: var(--border);
+    color: var(--text); font-weight: 700; font-size: 13px;
+    display: grid; place-items: center;
+  }
+  .action-name { font-weight: 600; }
+  ul.fields { margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
+  ul.fields b { color: var(--text); }
+  code, .kv {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px;
+  }
+  code { background: #0a0e15; border: 1px solid var(--border); border-radius: 6px; padding: 2px 6px; }
+  .copy-row {
+    display: flex; gap: 8px; align-items: stretch; margin: 8px 0;
+  }
+  .copy-row code {
+    flex: 1; overflow-x: auto; white-space: nowrap; padding: 10px 12px;
+  }
+  .copy-row button {
+    flex: none; background: var(--accent); color: #04222f; border: 0;
+    border-radius: 6px; padding: 0 14px; font-weight: 700; cursor: pointer;
+  }
+  .copy-row button:active { transform: translateY(1px); }
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; }
+  td:first-child code { background: transparent; border: 0; padding: 0; color: var(--accent); }
+  .note {
+    background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.3);
+    border-radius: 10px; padding: 12px 14px; margin-top: 12px; font-size: 14px;
+  }
+  .warn { background: rgba(251,191,36,.08); border-color: rgba(251,191,36,.35); }
+  .tip { color: var(--muted); font-size: 14px; margin-top: 10px; }
+  .placeholder { color: var(--gold); font-weight: 600; }
+  .cta {
+    display: block; text-align: center; text-decoration: none;
+    background: var(--accent); color: #04222f; font-weight: 800; font-size: 18px;
+    padding: 16px; border-radius: 12px; margin: 8px 0 4px;
+  }
+  .cta:active { transform: translateY(1px); }
+  .or { text-align: center; color: var(--muted); margin: 18px 0 10px; font-size: 14px; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 28px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🏆 Steps Leaderboard</h1>
+    <p>Log your daily steps automatically from your iPhone. ~5 minutes to set up, then it runs itself.</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span> Get your token</h2>
+    <p>Whoever invited you will give you a personal <b>token</b> — a short secret string
+    like <code>M-JIW2sSgf28E3N1KL68t0l1VxVDXbve</code>. Keep it handy; you'll paste it in
+    two places below. Don't share it — it's how the app knows the steps are yours.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span> Add the app to your Home Screen</h2>
+    <p>Open this link in <b>Safari</b>:</p>
+    <div class="copy-row">
+      <code id="appurl"><span class="placeholder">«paste your app link here»</span></code>
+      <button data-copy="appurl">Copy</button>
+    </div>
+    <p>Tap the <b>Share</b> icon → <b>Add to Home Screen</b>. Open it from your Home Screen,
+    paste your <b>token</b> once when asked, and you're in — you'll see the leaderboard,
+    a submit form, and your history.</p>
+    <div class="note">You can already submit steps by hand on the <b>Submit</b> tab. Step 3
+    below just makes it happen automatically every day so you never forget.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span> Add the Shortcut</h2>
+
+    <p><b>Option A — one tap (easiest):</b></p>
+    <a class="cta" id="addBtn" href="PASTE_ICLOUD_SHORTCUT_LINK_HERE">➕ Add to Shortcuts</a>
+    <p class="tip">On iPhone this opens the Shortcuts app and shows an <b>Add Shortcut</b>
+    screen — tap <b>Add Shortcut</b>. (Apple requires that one tap; a website can't install it
+    completely silently.) After it's added, open it once and paste <b>your token</b> into the
+    <b>Text</b> action at the very top — that's the only thing you change.</p>
+
+    <p class="or">— or build it yourself —</p>
+
+    <p><b>Option B — build it manually.</b> Open the <b>Shortcuts</b> app → tap <b>+</b> →
+    <b>Add Action</b>, and add these actions <b>in order</b>. Search each name in the action list.</p>
+
+    <ol class="actions">
+      <li>
+        <div class="action-name">Text</div>
+        <ul class="fields">
+          <li>Type your <b>token</b> here — just the token, nothing else. This is the one thing
+          each person sets; everything below stays identical for everyone.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="action-name">Find Health Samples</div>
+        <ul class="fields">
+          <li>Sample Type: <b>Steps</b></li>
+          <li>Add Filter → <b>Start Date</b> · <b>is</b> · <b>Today</b></li>
+        </ul>
+      </li>
+      <li>
+        <div class="action-name">Calculate Statistics</div>
+        <ul class="fields">
+          <li>Operation: <b>Sum</b></li>
+          <li>Of: <b>Health Samples</b> (the result of the action above)</li>
+        </ul>
+      </li>
+      <li>
+        <div class="action-name">Round Number</div>
+        <ul class="fields">
+          <li>Round <b>Statistics Result</b> to the nearest <b>1</b> — steps must be a whole number.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="action-name">Format Date</div>
+        <ul class="fields">
+          <li>Date: <b>Current Date</b></li>
+          <li>Date Format: <b>Custom</b> → <code>yyyy-MM-dd</code></li>
+        </ul>
+      </li>
+      <li>
+        <div class="action-name">Get Contents of URL</div>
+        <ul class="fields">
+          <li>URL (tap the URL field and paste this):</li>
+        </ul>
+        <div class="copy-row">
+          <code id="posturl">https://step-tracker-101.onrender.com/steps</code>
+          <button data-copy="posturl">Copy</button>
+        </div>
+        <ul class="fields">
+          <li>Tap <b>Show More</b>, set <b>Method</b> to <b>POST</b></li>
+          <li>Under <b>Headers</b>, add one — Key: <code>Authorization</code>, Value:
+            type <code>Bearer </code> (with a trailing space) then insert the <b>Text</b>
+            variable from action 1 (your token)</li>
+          <li>Set <b>Request Body</b> to <b>JSON</b> and add these three fields:</li>
+        </ul>
+        <table>
+          <tr><th>Key</th><th>Type</th><th>Value</th></tr>
+          <tr><td><code>date</code></td><td>Text</td><td>the <b>Formatted Date</b> variable</td></tr>
+          <tr><td><code>steps</code></td><td>Number</td><td>the <b>Rounded Number</b> variable</td></tr>
+          <tr><td><code>source</code></td><td>Text</td><td><code>shortcut</code></td></tr>
+        </table>
+        <div class="tip">To insert a variable (Formatted Date / Rounded Number), tap the value
+        field and pick it from the suggestion bar above the keyboard.</div>
+      </li>
+    </ol>
+
+    <p style="margin-top:14px">Name it something like <b>“Log my steps”</b> and tap the
+    <b>▶︎</b> to test it. The first run asks for Health permission — allow it. If it worked,
+    open the app and you'll see your steps on the leaderboard. 🎉</p>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span> Make it run automatically</h2>
+    <p>In the Shortcuts app, go to the <b>Automation</b> tab → <b>+</b> → <b>Time of Day</b>:</p>
+    <ul class="fields" style="color:var(--text)">
+      <li>Pick a time — <b>11:00 PM</b> is a good end-of-day snapshot</li>
+      <li>Frequency: <b>Daily</b></li>
+      <li>Choose <b>Run Immediately</b> and turn <b>off “Ask Before Running”</b></li>
+      <li>Select your <b>“Log my steps”</b> shortcut</li>
+    </ul>
+    <div class="note">Running it more than once a day is totally safe — the app keeps
+    <b>one entry per day</b> and just updates today's number. So you can set the automation
+    to every hour if you want a live-ish count, or leave it at 11 PM for a clean daily total.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">?</span> If something's off</h2>
+    <ul class="fields" style="color:var(--text)">
+      <li><b>“Invalid token”</b> — check the header is exactly <code>Bearer </code> + your token
+        (one space, no quotes).</li>
+      <li><b>Steps look wrong / rejected</b> — make sure you added the <b>Round Number</b> action;
+        the count must be a whole number between 0 and 200,000.</li>
+      <li><b>Nothing shows on the leaderboard</b> — give it a few seconds and pull to refresh;
+        the server may take ~30s to wake up the first time each day.</li>
+      <li><b>Wrong day</b> — the date uses <code>yyyy-MM-dd</code> and the group's timezone;
+        that's expected, everyone's on the same clock.</li>
+    </ul>
+  </section>
+
+  <footer>Steps Leaderboard · have fun, walk more 🚶</footer>
+</div>
+
+<script>
+  document.querySelectorAll('button[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.dataset.copy);
+      var text = el.innerText.trim();
+      navigator.clipboard.writeText(text).then(function () {
+        var old = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(function () { btn.textContent = old; }, 1200);
+      });
+    });
+  });
+
+  var addBtn = document.getElementById('addBtn');
+  if (addBtn) addBtn.addEventListener('click', function (e) {
+    if (addBtn.getAttribute('href') === 'PASTE_ICLOUD_SHORTCUT_LINK_HERE') {
+      e.preventDefault();
+      alert('The one-tap link is not set up yet. Ask whoever shared this to add the iCloud '
+        + 'link, or use Option B below to build the shortcut yourself.');
+    }
+  });
+</script>
+</body>
+</html>
