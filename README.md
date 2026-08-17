@@ -84,7 +84,7 @@ BASE_URL=http://localhost:8000 ADMIN_KEY=your-admin-key ./test_api.sh
 
 ```bash
 cd frontend
-cp .env.example .env.local    # set NEXT_PUBLIC_API_URL=http://localhost:8000
+cp .env.example .env.local    # set NEXT_PUBLIC_API_URL=https://step-tracker-101.onrender.com
 npm install
 npm run dev                   # → http://localhost:3000
 ```
