@@ -4,11 +4,11 @@
 #   BASE_URL=http://localhost:8000 ADMIN_KEY=... ./test_api.sh
 #
 # Requires: curl, python3 (for pretty-printing / date math). Exits non-zero on the
-# first failed assertion so it's usable in CI.
+# first failed assertion so it is usable in CI.
 set -euo pipefail
 
 BASE_URL="${BASE_URL:-http://localhost:8000}"
-ADMIN_KEY="${ADMIN_KEY:?set ADMIN_KEY to the backend's ADMIN_KEY}"
+ADMIN_KEY="${ADMIN_KEY:?set ADMIN_KEY to match the backend ADMIN_KEY}"
 
 say() { printf '\n=== %s ===\n' "$1"; }
 today() { python3 -c 'import datetime,os;print(datetime.date.today().isoformat())'; }
