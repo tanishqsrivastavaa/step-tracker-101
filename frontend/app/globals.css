@@ -1,17 +1,101 @@
 @import "tailwindcss";
 
-/* Tailwind v4 theme tokens. Kept minimal — a calm, mobile-first palette. */
+/* Tailwind v4 theme tokens. These are the DEFAULT ("Midnight") theme; the
+   [data-theme="…"] blocks below repaint the same tokens for the other themes,
+   so every utility that reads var(--color-…) restyles instantly on switch.
+   NB: reference tokens as bg-(--color-x) — the v4 way. Bracket [--x] is broken. */
 @theme {
-  --color-bg: #0b0f17;
-  --color-surface: #141b26;
-  --color-surface-2: #1c2634;
-  --color-border: #263141;
-  --color-text: #e8edf4;
-  --color-muted: #93a1b5;
-  --color-accent: #38bdf8;
+  --color-bg: #080b14;
+  --color-surface: #0e1322;
+  --color-surface-2: #161d33;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(91, 140, 255, 0.5);
+  --color-text: #f2f5ff;
+  --color-muted: #8b93b5;
+
+  --color-accent: #5b8cff;
+  --color-accent-2: #a855f7; /* second stop for loud gradients */
+  --color-on-accent: #ffffff; /* text that sits on a filled accent */
+  --color-accent-weak: rgba(91, 140, 255, 0.16);
+  --color-accent-soft: rgba(91, 140, 255, 0.5);
+  --color-accent-border: rgba(91, 140, 255, 0.6);
+  --color-glow: rgba(91, 140, 255, 0.55);
+
   --color-gold: #fbbf24;
   --color-silver: #cbd5e1;
   --color-bronze: #d98a5b;
+}
+
+/* ── Neon: cyberpunk magenta × cyan ─────────────────────────────────────── */
+:root[data-theme="neon"] {
+  --color-bg: #06060c;
+  --color-surface: #0f0a18;
+  --color-surface-2: #191029;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 45, 149, 0.55);
+  --color-text: #fdf2ff;
+  --color-muted: #9a89b0;
+  --color-accent: #ff2d95;
+  --color-accent-2: #00e5ff;
+  --color-on-accent: #ffffff;
+  --color-accent-weak: rgba(255, 45, 149, 0.16);
+  --color-accent-soft: rgba(255, 45, 149, 0.5);
+  --color-accent-border: rgba(255, 45, 149, 0.65);
+  --color-glow: rgba(255, 45, 149, 0.6);
+}
+
+/* ── Volt: acid lime × green ────────────────────────────────────────────── */
+:root[data-theme="volt"] {
+  --color-bg: #070a05;
+  --color-surface: #0e150a;
+  --color-surface-2: #172012;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(182, 255, 0, 0.5);
+  --color-text: #f3ffe0;
+  --color-muted: #9aa984;
+  --color-accent: #b6ff00;
+  --color-accent-2: #00ff9d;
+  --color-on-accent: #0a0f00;
+  --color-accent-weak: rgba(182, 255, 0, 0.14);
+  --color-accent-soft: rgba(182, 255, 0, 0.45);
+  --color-accent-border: rgba(182, 255, 0, 0.6);
+  --color-glow: rgba(182, 255, 0, 0.5);
+}
+
+/* ── Sunset: hot orange × amber ─────────────────────────────────────────── */
+:root[data-theme="sunset"] {
+  --color-bg: #140a12;
+  --color-surface: #1e0f1a;
+  --color-surface-2: #2a1624;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 106, 43, 0.55);
+  --color-text: #fff3ec;
+  --color-muted: #b7947f;
+  --color-accent: #ff6a2b;
+  --color-accent-2: #ffb800;
+  --color-on-accent: #1a0c00;
+  --color-accent-weak: rgba(255, 106, 43, 0.16);
+  --color-accent-soft: rgba(255, 106, 43, 0.5);
+  --color-accent-border: rgba(255, 106, 43, 0.6);
+  --color-glow: rgba(255, 106, 43, 0.55);
+}
+
+/* ── Crimson: blood red × pink ──────────────────────────────────────────── */
+:root[data-theme="crimson"] {
+  --color-bg: #0f0509;
+  --color-surface: #190810;
+  --color-surface-2: #250c16;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 31, 75, 0.55);
+  --color-text: #ffeef1;
+  --color-muted: #b1808b;
+  --color-accent: #ff1f4b;
+  --color-accent-2: #ff5e7a;
+  --color-on-accent: #ffffff;
+  --color-accent-weak: rgba(255, 31, 75, 0.16);
+  --color-accent-soft: rgba(255, 31, 75, 0.5);
+  --color-accent-border: rgba(255, 31, 75, 0.65);
+  --color-glow: rgba(255, 31, 75, 0.6);
 }
 
 html,
@@ -19,6 +103,41 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   -webkit-tap-highlight-color: transparent;
+}
+
+/* A soft radial wash of the accent so the loud themes read as "lit", not flat. */
+body {
+  background-image: radial-gradient(
+    120% 60% at 50% -10%,
+    color-mix(in oklab, var(--color-accent) 16%, transparent),
+    transparent 60%
+  );
+  background-attachment: fixed;
+}
+
+/* ── Loud helpers ───────────────────────────────────────────────────────── */
+.accent-grad {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-accent),
+    var(--color-accent-2)
+  );
+}
+.text-grad {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-accent),
+    var(--color-accent-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.glow {
+  box-shadow: 0 0 24px -4px var(--color-glow);
+}
+.glow-sm {
+  box-shadow: 0 0 14px -4px var(--color-glow);
 }
 
 /* Hide number-input spinners for a cleaner mobile form. */

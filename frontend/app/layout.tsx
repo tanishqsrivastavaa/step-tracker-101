@@ -13,12 +13,18 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+// Applied before first paint so the chosen theme never flashes the default.
+const themeInit = `try{var t=localStorage.getItem('steps.theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+      </head>
       <body className="min-h-dvh">
         <Nav />
-        <main className="mx-auto max-w-md px-4 pb-16 pt-4">{children}</main>
+        <main className="mx-auto w-full max-w-3xl px-4 pb-16 pt-6 sm:px-6">{children}</main>
       </body>
     </html>
   );
