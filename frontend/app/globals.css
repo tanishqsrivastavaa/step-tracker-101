@@ -5,6 +5,9 @@
    so every utility that reads var(--color-…) restyles instantly on switch.
    NB: reference tokens as bg-(--color-x) — the v4 way. Bracket [--x] is broken. */
 @theme {
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+
   --color-bg: #080b14;
   --color-surface: #0e1322;
   --color-surface-2: #161d33;
@@ -102,6 +105,7 @@ html,
 body {
   background: var(--color-bg);
   color: var(--color-text);
+  font-family: var(--font-sans);
   -webkit-tap-highlight-color: transparent;
 }
 
