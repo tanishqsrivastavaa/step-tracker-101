@@ -22,19 +22,19 @@ function History() {
   const streak = entries ? currentStreak(entries) : 0;
 
   return (
-    <div>
+    <div className="mx-auto max-w-lg">
       <h1 className="mb-3 text-xl font-bold">My history</h1>
 
       <div className="mb-4 grid grid-cols-2 gap-2">
-        <div className="rounded-xl border border-[--color-border] bg-[--color-surface] p-3">
+        <div className="rounded-xl border border-(--color-border) bg-(--color-surface) p-3">
           <div className="text-2xl font-bold tabular-nums">🔥 {streak}</div>
-          <div className="text-xs text-[--color-muted]">
+          <div className="text-xs text-(--color-muted)">
             day streak (≥ {DAILY_GOAL.toLocaleString()})
           </div>
         </div>
-        <div className="rounded-xl border border-[--color-border] bg-[--color-surface] p-3">
+        <div className="rounded-xl border border-(--color-border) bg-(--color-surface) p-3">
           <div className="text-2xl font-bold tabular-nums">{entries?.length ?? 0}</div>
-          <div className="text-xs text-[--color-muted]">days logged (last 30)</div>
+          <div className="text-xs text-(--color-muted)">days logged (last 30)</div>
         </div>
       </div>
 
@@ -44,10 +44,10 @@ function History() {
         </p>
       )}
 
-      {!entries && !error && <p className="text-sm text-[--color-muted]">Loading…</p>}
+      {!entries && !error && <p className="text-sm text-(--color-muted)">Loading…</p>}
 
       {entries && entries.length === 0 && (
-        <p className="text-sm text-[--color-muted]">
+        <p className="text-sm text-(--color-muted)">
           No entries yet — log your first day on the Submit tab.
         </p>
       )}
@@ -56,10 +56,10 @@ function History() {
         {entries?.map((e) => (
           <li
             key={e.id}
-            className="flex items-center gap-3 rounded-xl border border-[--color-border] bg-[--color-surface] p-3"
+            className="flex items-center gap-3 rounded-xl border border-(--color-border) bg-(--color-surface) p-3"
           >
             <span className="flex-1 font-medium tabular-nums">{e.date}</span>
-            {hitGoal(e.steps) && <span title="Goal hit" className="text-[--color-gold]">🎯</span>}
+            {hitGoal(e.steps) && <span title="Goal hit" className="text-(--color-gold)">🎯</span>}
             <span className="tabular-nums font-semibold">{e.steps.toLocaleString()}</span>
           </li>
         ))}

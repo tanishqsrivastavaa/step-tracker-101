@@ -37,23 +37,23 @@ function SubmitForm() {
   }
 
   return (
-    <div>
+    <div className="mx-auto max-w-lg">
       <h1 className="mb-3 text-xl font-bold">Submit steps</h1>
 
       <form onSubmit={onSubmit} className="space-y-3">
         <label className="block">
-          <span className="text-sm text-[--color-muted]">Date</span>
+          <span className="text-sm text-(--color-muted)">Date</span>
           <input
             type="date"
             value={date}
             max={todayIso()}
             onChange={(e) => setDate(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-[--color-border] bg-[--color-surface-2] px-3 py-2 outline-none focus:border-[--color-accent]"
+            className="mt-1 w-full rounded-lg border border-(--color-border) bg-(--color-surface-2) px-3 py-2 outline-none focus:border-(--color-accent)"
           />
         </label>
 
         <label className="block">
-          <span className="text-sm text-[--color-muted]">Steps</span>
+          <span className="text-sm text-(--color-muted)">Steps</span>
           <input
             type="number"
             inputMode="numeric"
@@ -62,14 +62,14 @@ function SubmitForm() {
             placeholder="e.g. 8432"
             value={steps}
             onChange={(e) => setSteps(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-[--color-border] bg-[--color-surface-2] px-3 py-2 text-lg tabular-nums outline-none focus:border-[--color-accent]"
+            className="mt-1 w-full rounded-lg border border-(--color-border) bg-(--color-surface-2) px-3 py-2 text-lg tabular-nums outline-none focus:border-(--color-accent)"
           />
         </label>
 
         <button
           type="submit"
           disabled={busy}
-          className="w-full rounded-lg bg-[--color-accent] py-3 font-semibold text-[#04222f] disabled:opacity-60"
+          className="accent-grad glow-sm w-full rounded-lg py-3 font-extrabold uppercase tracking-wide text-(--color-on-accent) disabled:opacity-60"
         >
           {busy ? "Saving…" : "Save steps"}
         </button>
@@ -82,12 +82,12 @@ function SubmitForm() {
       )}
 
       {saved && (
-        <div className="mt-3 rounded-lg border border-[--color-border] bg-[--color-surface] p-3 text-sm">
+        <div className="mt-3 rounded-lg border border-(--color-border) bg-(--color-surface) p-3 text-sm">
           Saved <strong>{saved.steps.toLocaleString()}</strong> steps for {saved.date}.
           {hitGoal(saved.steps) ? (
-            <span className="ml-1 text-[--color-gold]">🎯 Goal hit!</span>
+            <span className="ml-1 text-(--color-gold)">🎯 Goal hit!</span>
           ) : (
-            <span className="ml-1 text-[--color-muted]">
+            <span className="ml-1 text-(--color-muted)">
               {(DAILY_GOAL - saved.steps).toLocaleString()} to go for your {DAILY_GOAL.toLocaleString()} goal.
             </span>
           )}
@@ -99,7 +99,7 @@ function SubmitForm() {
         href="/shortcut-guide.html"
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 block rounded-lg border border-[--color-border] bg-[--color-surface] p-3 text-sm text-[--color-muted] hover:text-[--color-text]"
+        className="mt-6 block rounded-lg border border-(--color-border) bg-(--color-surface) p-3 text-sm text-(--color-muted) hover:text-(--color-text)"
       >
         📱 Tired of typing? Auto-log your steps from an iPhone Shortcut →
       </a>

@@ -21,9 +21,9 @@ export default function TokenGate({ children }: { children: React.ReactNode }) {
 
   if (!hasToken) {
     return (
-      <div className="rounded-xl border border-[--color-border] bg-[--color-surface] p-4">
+      <div className="rounded-xl border border-(--color-border) bg-(--color-surface) p-4">
         <h2 className="text-base font-semibold">Enter your token</h2>
-        <p className="mt-1 text-sm text-[--color-muted]">
+        <p className="mt-1 text-sm text-(--color-muted)">
           A friend running this got you a token. Paste it once — it stays on this device.
         </p>
         <form
@@ -41,11 +41,11 @@ export default function TokenGate({ children }: { children: React.ReactNode }) {
             placeholder="paste token"
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            className="flex-1 rounded-lg border border-[--color-border] bg-[--color-surface-2] px-3 py-2 text-sm outline-none focus:border-[--color-accent]"
+            className="flex-1 rounded-lg border border-(--color-border) bg-(--color-surface-2) px-3 py-2 text-sm outline-none focus:border-(--color-accent)"
           />
           <button
             type="submit"
-            className="rounded-lg bg-[--color-accent] px-4 py-2 text-sm font-semibold text-[#04222f]"
+            className="accent-grad glow-sm rounded-lg px-4 py-2 text-sm font-bold text-(--color-on-accent)"
           >
             Save
           </button>
@@ -62,7 +62,7 @@ export default function TokenGate({ children }: { children: React.ReactNode }) {
           clearToken();
           setHasToken(false);
         }}
-        className="mt-6 text-xs text-[--color-muted] underline underline-offset-2"
+        className="mt-6 text-xs text-(--color-muted) underline underline-offset-2"
       >
         Forget token on this device
       </button>
