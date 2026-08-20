@@ -48,8 +48,19 @@ function authHeaders(): Record<string, string> {
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
+export interface TodayInfo {
+  date: string; // YYYY-MM-DD in the group's configured timezone
+  timezone: string;
+}
+
 export function getLeaderboard(period: Period): Promise<LeaderRow[]> {
   return request<LeaderRow[]>(`/leaderboard?period=${period}`);
+}
+
+/** The backend's canonical local date — used to compute period bounds the same
+ *  way the leaderboard does, so a client-side period sum lines up with a row. */
+export function getToday(): Promise<TodayInfo> {
+  return request<TodayInfo>(`/today`);
 }
 
 export function getMyEntries(days = 30): Promise<StepEntry[]> {
