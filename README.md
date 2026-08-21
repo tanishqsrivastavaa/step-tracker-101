@@ -1,5 +1,18 @@
-# Steps Leaderboard
+<div align="center">
 
+# 👟 Steps Leaderboard
+
+**Friends, step counts, and friendly competition.**
+
+Daily / weekly / monthly / all-time leaderboards with streaks and personal goals — fed by anything that can POST a number.
+
+![Next.js](https://img.shields.io/badge/Frontend-Next.js-black?logo=next.js&logoColor=white)
+![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi&logoColor=white)
+![Supabase](https://img.shields.io/badge/DB-Supabase%20Postgres-3ECF8E?logo=supabase&logoColor=white)
+
+</div>
+
+---
 A tiny web app where a group of friends log their **daily step counts** and compete
 on leaderboards (day / week / month / all-time), with streaks and a personal daily
 goal.
